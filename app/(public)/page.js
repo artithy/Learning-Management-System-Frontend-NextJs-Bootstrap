@@ -1,11 +1,8 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
       <div className="bg-light text-center py-5 mt-5">
         <h1 className="display-4 fw-4 mb-3">Start your learning journey</h1>
         <p className="lead mb-4">Explore a wide range of courses designed to help you achieve your goals</p>
@@ -37,7 +34,6 @@ export default function Home() {
         </Link>
       </div>
 
-      <Footer />
     </>
   );
 }

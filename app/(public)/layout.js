@@ -1,4 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 export const metadata = {
   title: "TT's Education",
@@ -7,10 +9,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <>
-      <Navbar />
-      {children}
-      <Footer />
-    </>
+    <html>
+      <body>
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
+    </html>
   );
 }
