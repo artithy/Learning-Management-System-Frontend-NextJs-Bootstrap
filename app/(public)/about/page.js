@@ -86,6 +86,77 @@ export default function AboutPage() {
 
                 </div>
             </section>
+
+
+            <section className="py-5 bg-light">
+                <div className="container">
+                    <h2 className="text-center fw-bold mb-5">
+                        What We Offer
+                    </h2>
+                    <div className="row g-4">
+                        <div className="col-sm-6 col-lg-3">
+                            <div className="card h-100 text-center shadow border-0">
+                                <div className="card-body">
+                                    <h6 className="fw-bold">Interactive Lessons</h6>
+                                    <p className="text-muted small">
+                                        Hands-on exercises for practical learning.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-sm-6 col-lg-3">
+                            <div className="card h-100 text-center shadow border-0">
+                                <div className="card-body">
+                                    <h6 className="fw-bold">Expert Instructors</h6>
+                                    <p className="text-muted small">
+                                        Learn from industry professionals.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div className="col-sm-6 col-lg-3">
+                            <div className="card h-100 text-center shadow border-0">
+                                <div className="card-body">
+                                    <h6 className="fw-bold">Flexible Learning</h6>
+                                    <p className="text-muted small">
+                                        Learn at your own pace, anytime, anywhere.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div className="col-sm-6 col-lg-3">
+                            <div className="card h-100 text-center shadow border-0">
+                                <div className="card-body">
+                                    <h6 className="fw-bold">Career Oriented Skills</h6>
+                                    <p className="text-muted small">
+                                        Focus on real-world skills that matter.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section
+                className="py-5 text-center"
+                style={{ background: "linear-gradient(to right, #dbeafe, #bfdbfe)" }}
+            >
+                <h3 className="fw-bold mb-4">
+                    Ready to Start Your Learning Journey?
+                </h3>
+
+                <Link href="/courses" className="btn btn-primary btn-lg">
+                    Explore Courses
+                </Link>
+            </section>
         </div >
 
     </>);
