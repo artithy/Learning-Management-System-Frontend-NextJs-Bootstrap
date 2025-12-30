@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import DashboardBox from "@/components/admin/DashboardBox";
-import { Chart } from "primechart/chart";
+import { Chart } from "primereact/chart";
 
 export default function DashboardHome() {
     const [stats, setStats] = useState({});

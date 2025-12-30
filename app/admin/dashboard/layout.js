@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function AdminDashboardLayout() {
+export default function AdminDashboardLayout({ children }) {
     const router = useRouter();
     const logout = () => {
         localStorage.removeItem("token");
@@ -28,7 +28,7 @@ export default function AdminDashboardLayout() {
 
                     </nav>
 
-                    <button className="btn btn-danger w-100 mt-4">
+                    <button className="btn btn-danger w-100 mt-4" onClick={logout}>
                         Logout
                     </button>
                 </aside>
