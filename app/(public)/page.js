@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CourseGrid from "@/components/courseGrid";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
 
       <div className="container py-5">
         <h2 className="mb-4 fw-bold">Featured Courses</h2>
+        <CourseGrid />
       </div>
 
       <div
