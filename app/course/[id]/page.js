@@ -26,6 +26,41 @@ export default function CoursePage({ params }) {
         }
     }, [id]);
 
+    const handleEnroll = async () => {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            toast.warning("You must login as a student to make payment");
+            router.push("/student/login");
+            return;
+        }
+
+        try {
+            const res = await fetch("http://127.0.0.1:8000/api/create_payment", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    course_id: course.id,
+                    amount: course.discount_price || course.price,
+                }),
+            });
+
+            const data = await res.json();
+
+            if (data.payment_url) {
+                window.location.href = data.payment_url;
+            } else {
+                toast.error("Payment failed");
+            }
+        } catch {
+            toast.error("Something went wrong");
+        }
+    };
+
+
     if (!course) {
         return (
             <>
@@ -98,11 +133,13 @@ export default function CoursePage({ params }) {
                     </div>
 
                     <div className="d-flex flex-column flex-sm-row gap-3 mt-4">
-                        <button className="btn btn-success px-4 py-2"
-                            onClick={() => { router.push("/student/login") }}
+                        <button
+                            className="btn btn-success px-4 py-2"
+                            onClick={handleEnroll}
                         >
                             Enroll Now
                         </button>
+
 
                         <button className="btn btn-secondary px-4 py-2"
                             onClick={() => { router.back() }}>
