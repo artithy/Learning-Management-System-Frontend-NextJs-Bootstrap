@@ -40,24 +40,29 @@ export default function StudentTopber() {
                         </button>
 
                         {open && (
-                            <div className="position-absolute end-0 mt-2 bg-white shadow rounded-3 p-2"
+                            <div className="position-absolute end-0 mt-2 bg-white shadow rounded-3 p-2 mt-3"
                                 style={{ width: "200px", zIndex: 1000 }}>
 
                                 <button
                                     className="dropdown-item d-flex align-items-center gap-2"
-                                    onClick={() => router.push("/student/profile")}
+                                    onClick={() => router.push("/student-panel/profile")}
                                 >
-                                    <User size={18} />
+                                    <User size={18} /> View Profile
 
                                 </button>
 
                                 <hr className="my-2" />
-
+                                <button className="dropdown-item d-flex align-items-center gap-2"
+                                    onClick={() => router.push("/student-panel/enrollments")}
+                                >
+                                    <BookOpen size={18} /> My Enrollments
+                                </button>
+                                <hr className="my-2" />
                                 <button
                                     className="dropdown-item d-flex align-items-center gap-2 text-danger"
                                     onClick={handleLogout}
                                 >
-                                    <LogOut size={18} />
+                                    <LogOut size={18} /> Logout
 
                                 </button>
                             </div>

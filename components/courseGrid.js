@@ -56,6 +56,13 @@ export default function CourseGrid({ showCategories = true, showEnrolledOnly = f
     const handleError = async (course) => {
         try {
             const token = localStorage.getItem("token");
+
+            const student = JSON.parse(localStorage.getItem("student_data"));
+            if (!student) {
+                toast.error("Please login again");
+                return;
+            }
+
             const res = await fetch("http://127.0.0.1:8000/api/create_payment", {
                 method: "POST",
                 headers: {
@@ -64,19 +71,27 @@ export default function CourseGrid({ showCategories = true, showEnrolledOnly = f
                 },
                 body: JSON.stringify({
                     course_id: course.id,
-                    amount: course.discount_price || course.price,
+                    amount: Number(course.discount_price ?? course.price),
+                    user_name: student.name,
+                    user_email: student.email,
+                    user_phone: student.phone,
+                    user_address: student.address || "Dhaka",
                 }),
             });
+
             const data = await res.json();
+
             if (data.payment_url) {
                 window.location.href = data.payment_url;
             } else {
-                toast.error("Payment Failed");
+                toast.error("Payment failed");
             }
-        } catch {
-            toast.error("something went wrong");
+        } catch (error) {
+            console.error("PAYMENT ERROR:", error);
+            toast.error("Something went wrong");
         }
     };
+
 
     const filteredCourses =
         selectedCategory === "All"

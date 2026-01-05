@@ -31,9 +31,13 @@ export default function StudentSignup() {
             });
 
             const data = await res.json();
+
             localStorage.setItem("token", data.token);
+            localStorage.setItem("student_data", JSON.stringify(data.student));
             toast.success("Login successfully");
-            setTimeout(() => router.push('/student/dashboard'), 1500)
+
+
+            setTimeout(() => router.push('/student-panel'), 1500)
         } catch {
             toast.error("Login Failed");
         }
