@@ -37,4 +37,33 @@ export default function StudentProfile() {
     useEffect(() => {
         fetchProfile();
     }, []);
+
+    const handlesave = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const res = await fetch("http://127.0.0.1:8000/api/student/profile", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(formData),
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                toast.error(data.message || "Failed to update profile");
+                return;
+            }
+            setStudent(data.student);
+            setEditing(false);
+            toast.success("Profile updated successfully");
+        } catch (error) {
+            console.log(error);
+            toast.error("Failed to update profile");
+        }
+    };
+
+    if (!student) {
+        return <p className="text-center mt-5">Loading...</p>
+    }
 }
