@@ -38,7 +38,7 @@ export default function StudentProfile() {
         fetchProfile();
     }, []);
 
-    const handlesave = async () => {
+    const handleSave = async () => {
         try {
             const token = localStorage.getItem("token");
             const res = await fetch("http://127.0.0.1:8000/api/student/profile", {
@@ -54,7 +54,9 @@ export default function StudentProfile() {
                 toast.error(data.message || "Failed to update profile");
                 return;
             }
-            setStudent(data.student);
+            setStudent(data.Student);
+            setFormData(data.Student);
+
             setEditing(false);
             toast.success("Profile updated successfully");
         } catch (error) {
@@ -66,4 +68,55 @@ export default function StudentProfile() {
     if (!student) {
         return <p className="text-center mt-5">Loading...</p>
     }
+
+    return (
+        <>
+            <div className="container py-5">
+                <ToastContainer position="top-right" autoClose={3000} />
+                <div className="card shadow mx-auto" style={{ maxWidth: "600px" }}>
+                    <div className="card-body">
+                        <h3 className="card-title mb-4 fw-bold">My Profile</h3>
+                        {["name", "phone", "address", "dob", "gender"].map((field) => (
+
+                            <div className="mb-3" key={field}>
+                                <label className="form-label text-capitalize fw-semibold">
+                                    {field}
+                                </label>
+                                {editing ? (
+                                    <input
+                                        type={field === "dob" ? "date" : "text"}
+                                        className="form-control"
+                                        value={formData[field] || ""}
+                                        onChange={(e) =>
+                                            setFormData({
+                                                ...formData,
+                                                [field]: e.target.value,
+                                            })
+                                        }
+                                    />
+                                ) : (
+                                    <p className="form-control-plaintext">
+                                        {student[field] || "N/A"}
+                                    </p>
+                                )}
+                            </div>
+                        ))}
+
+                        <div className="">
+                            {editing ? (
+                                <button className="btn btn-success me-2" onClick={handleSave}>
+                                    Save
+                                </button>
+                            ) : (
+                                <button className="btn btn-primary" onClick={() => setEditing(true)}>
+                                    Edit Profile
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </>
+    )
 }
